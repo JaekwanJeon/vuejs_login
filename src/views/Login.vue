@@ -49,12 +49,13 @@ export default {
         .then((res) => {
           console.log(res.staus);
           console.log(res.data);
+          alert("로그인 성공 : "+ res.data.token);
         })
         .catch((error) => {
           console.log(error);
         });
 
-      alert('로그인 되었습니다.')
+
     }
   }
 }

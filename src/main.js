@@ -7,10 +7,11 @@ import axios from 'axios'
 
 // axios.defaults.baseURL = `${process.env.VUE_APP_API_URL}${process.env.VUE_APP_PUBLIC_PATH}`
 axios.defaults.baseURL = 'http://localhost:8080'
-axios.defaults.headers.common = {
-    'X-Requested-With': 'XMLHttpRequest',
-    'Access-Control-Allow-Origin': '*'
-}
+// axios.defaults.headers.common = {
+//     'X-Requested-With': 'XMLHttpRequest',
+//     'Access-Control-Allow-Origin': '*'
+// }
+// axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 const reqInterceptor = axios.interceptors.request.use(config => {
     // config.headers.authorization = 'token';
