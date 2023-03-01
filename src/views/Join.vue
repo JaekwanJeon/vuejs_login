@@ -1,9 +1,15 @@
 <template>
   <div>
     <div>
-      <h2>Please Log In</h2>
-      <div id="loginForm">
+      <h2>Signup</h2>
+      <div id="JoinForm">
         <form @submit.prevent="fnLogin">
+          <p>
+            <input class="w3-input" name="uid" placeholder="Enter your first name" v-model="fname"><br>
+          </p>
+          <p>
+            <input class="w3-input" name="uid" placeholder="Enter your last name" v-model="lname"><br>
+          </p>
           <p>
             <input class="w3-input" name="uid" placeholder="Enter your email" v-model="email"><br>
           </p>
@@ -24,12 +30,25 @@
 export default {
   data() {
     return {
+      fname: '',
+      lname: '',
       email: '',
       password: ''
     }
   },
   methods: {
     fnLogin() {
+
+      if (this.fname === '') {
+        alert('이름을 입력하세요.')
+        return
+      }
+
+      if (this.lname === '') {
+        alert('성을 입력하세요.')
+        return
+      }
+
       if (this.email === '') {
         alert('email을 입력하세요.')
         return
@@ -41,22 +60,22 @@ export default {
       }
 
       let account = {};
+      account.fname = this.fname;
+      account.lname = this.lname;
       account.email = this.email;
       account.password = this.password;
 
       this.$axios
-        .post("/api/v1/auth/authenticate", JSON.stringify(account))
+        .post("/api/v1/auth/register", JSON.stringify(account))
         .then((res) => {
           console.log(res.staus);
           console.log(res.data);
-          this.$store.state.loginUserInfo = {
-            email: account.email,
-            token: res.data.token
-          }
-          this.$router.push('/');
+          alert("환영합니다. 가입하신 계정으로 로그인 하세요.");
+          this.$router.push('/login');
         })
         .catch((error) => {
           console.log(error);
+          alert("가입 오류 입니다. 다시 가입해 주세요.");
         });
 
 

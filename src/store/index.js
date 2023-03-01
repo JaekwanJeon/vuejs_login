@@ -2,12 +2,16 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    loginUserInfo: {
+        email : '',
+        token : ''
+    }
   },
   getters: {
   },
-  mutations: {
+  mutations: {  // commit 으로 부를 수 있다.
   },
-  actions: {
+  actions: { // dispatch 로 부를 수 있다.
   },
   modules: {
   }

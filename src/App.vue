@@ -1,11 +1,24 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link>
-    <router-link to="/login">Login</router-link>
+    <router-link to="/">Home</router-link>&nbsp;
+    <router-link to="/login" v-if="!this.$store.state.loginUserInfo.token">Login</router-link>&nbsp;
+    <router-link to="/join">Signup</router-link>&nbsp;
     <router-link to="/about">About</router-link>
   </nav>
+  <user-info/>
   <router-view/>
 </template>
+
+<script>
+// @ is an alias to /src
+import UserInfo from '@/views/UserInfo.vue'
+export default {
+  name: 'App',
+  components: {
+    UserInfo: UserInfo,
+  }
+}
+</script>
 
 <style>
 #app {
